@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "uScroller - YouTube Shorts Auto Scroll",
+  "version": "1.0.0",
+  "description": "Automatically scrolls to the next YouTube Short when the current one ends (or after a set time).",
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "action": {
+    "default_title": "uScroller",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

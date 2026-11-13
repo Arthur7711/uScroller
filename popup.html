@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 260px; margin: 0; padding: 14px; font: 13px Roboto, Arial, sans-serif; background: #0f0f0f; color: #f1f1f1; }
+    h1 { font-size: 16px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+    h1 span { color: #ff0033; }
+    .row { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; }
+    select, input[type=number] { background: #272727; color: #f1f1f1; border: 1px solid #3f3f3f; border-radius: 6px; padding: 4px 6px; }
+    input[type=number] { width: 60px; }
+    .switch { position: relative; width: 40px; height: 22px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; inset: 0; background: #3f3f3f; border-radius: 22px; cursor: pointer; transition: .2s; }
+    .slider::before { content: ""; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+    input:checked + .slider { background: #ff0033; }
+    input:checked + .slider::before { transform: translateX(18px); }
+    .muted { color: #aaa; font-size: 12px; }
+    .hidden { display: none; }
+    button { background: #272727; color: #f1f1f1; border: 1px solid #3f3f3f; border-radius: 6px; padding: 3px 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1><span>▶</span> uScroller</h1>
+
+  <div class="row">
+    <b>Auto scroll</b>
+    <label class="switch"><input type="checkbox" id="enabled"><span class="slider"></span></label>
+  </div>
+
+  <div class="row">
+    <span>Scroll when</span>
+    <select id="mode">
+      <option value="end">Short ends</option>
+      <option value="interval">Every N seconds</option>
+    </select>
+  </div>
+
+  <div class="row hidden" id="intervalRow">
+    <span>Seconds per short</span>
+    <input type="number" id="interval" min="1" max="600" step="1">
+  </div>
+
+  <div class="row" id="delayRow">
+    <span>Delay after end (s)</span>
+    <input type="number" id="delay" min="0" max="10" step="0.5">
+  </div>
+
+  <div class="row">
+    <span>Skip ads</span>
+    <label class="switch"><input type="checkbox" id="skipAds"><span class="slider"></span></label>
+  </div>
+
+  <div class="row muted">
+    <span>Scrolled: <b id="scrolled">0</b></span>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="muted">Tip: Alt+S toggles on the page.</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
